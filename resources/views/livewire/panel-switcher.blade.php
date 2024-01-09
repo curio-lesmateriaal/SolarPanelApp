@@ -1,5 +1,10 @@
 <div>
     <h4>Aantal actief: {{ $subscription->panels()->where('status', 'active')->count()  }}</h4>
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     <div class="panels d-flex flex-wrap">
         @foreach($subscription->panels as $panel)
             <div
@@ -15,5 +20,6 @@
                                     @endif">
             </div>
         @endforeach
+
     </div>
 </div>

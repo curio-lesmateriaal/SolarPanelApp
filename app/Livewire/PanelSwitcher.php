@@ -14,6 +14,7 @@ class PanelSwitcher extends Component
         $panel = Panel::find($panelId);
         $panel->status = $panel->status == 'active' ? 'inactive' : 'active';
         $panel->save();
+        session()->flash('message', "Panel #$panel->id op $panel->status gezet.");
 
     }
 
