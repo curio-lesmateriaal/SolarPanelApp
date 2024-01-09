@@ -14,21 +14,6 @@
     <body class="antialiased">
         <div class="container">
             <h1 class="text-center">SUPER SOLAR PANELS</h1>
-            <h2 class="">Subscriptions</h2>
-            <ul>
-                @forelse($subscriptions as $subscription)
-                    <li>
-                        <a href="{{route('subscription', $subscription->id)}}">
-                            {{$subscription->customer->name}} {{ $subscription->customer->address }} <br>
-                            type systeem: <b>{{ $subscription->solarPanelSystem->name }}</b> <br>
-                            aantal panelen: <b>{{ $subscription->panels->count() }}</b>
-                        </a>
-                    </li>
-                @empty
-                    <li><i>Momenteel geen subscriptions</i></li>
-                @endforelse
-            </ul>
-
             @livewire('form')
 
         </div>

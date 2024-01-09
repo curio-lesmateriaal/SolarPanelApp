@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubscriptionsController;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $subscriptions = Subscription::all();
-    return view('welcome', [
-        'subscriptions' => $subscriptions,
-    ]);
+
+    return view('welcome');
 });
 
-Route::get('/subscriptions/{subscription}', function (Subscription $subscription) {
-    return view('subscription', [
-        'subscription' => $subscription,
-    ]);
-})->name('subscription');
+Route::get("/subscriptions", [SubscriptionsController::class, 'index'])
+        ->name('subscriptions.index');
+
+Route::get('/subscriptions/{subscription}', [SubscriptionsController::class, 'show'])
+        ->name('subscriptions.show');

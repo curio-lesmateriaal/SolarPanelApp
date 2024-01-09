@@ -11,20 +11,18 @@ class Form extends Component
     public $remarks;
 
     public function sendEmail() {
-        $this->validate([
-            'email' => 'required|email',
-            'remarks' => 'required|min:10'
-        ]);
+       $this->validate([
+           'email' => 'required|email',
+           'remarks' => 'required'
+       ]);
 
-        // send mail here....
+       Mail::to('info@solarpanelapps.nl')
+        ->send(new \App\Mail\ContactForm($this->email, $this->remarks));
 
+       $this->email = '';
+       $this->remarks = '';
+       session()->flash('message', 'Bedankt voor uw bericht, we nemen zo snel mogelijk contact met u op!');
 
-        // success message
-        session()->flash('message', 'Je bericht is verzonden!');
-
-        // reset input fields
-        $this->email = '';
-        $this->remarks = '';
     }
 
     public function render()
