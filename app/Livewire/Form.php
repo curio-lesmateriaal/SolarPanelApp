@@ -16,12 +16,13 @@ class Form extends Component
             'remarks' => 'required|min:10'
         ]);
 
-        // Send email
-        Mail::to($this->email)->send(new \App\Mail\Remarks($this->remarks));
+        // send mail here....
+
 
         // success message
         session()->flash('message', 'Je bericht is verzonden!');
 
+        // reset input fields
         $this->email = '';
         $this->remarks = '';
     }
