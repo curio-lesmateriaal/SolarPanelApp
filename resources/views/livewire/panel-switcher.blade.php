@@ -22,4 +22,5 @@
         @endforeach
 
     </div>
+    <button wire:click="disableSystem" class="btn btn-danger">Systeem uitschakelen</button>
 </div>
