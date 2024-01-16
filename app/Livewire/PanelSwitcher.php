@@ -21,11 +21,9 @@ class PanelSwitcher extends Component
     }
 
     public function disableSystem() {
-
             $this->subscription->panels()->update(['status' => 'inactive']);
             session()->flash('message', 'Alle panels zijn uitgezet.');
             Mail::to($this->subscription->customer->email)->send(new DisableSystem());
-
     }
 
     public function render()
