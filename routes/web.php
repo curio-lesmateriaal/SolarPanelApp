@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionsController;
+use App\Models\Panel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,16 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // haal het |aantal| klanten op
+    $customerCount = \App\Models\Customer::count();
+
+    // haal actieve panelen op
+    $panelCount = Panel::whereNotNull('subscription_id')->count();
+
+    return view('dashboard', [
+        'customerCount' => $customerCount,
+        'panelCount' => $panelCount
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

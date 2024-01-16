@@ -13,6 +13,14 @@
     </head>
     <body class="antialiased">
         <div class="container">
+            <div class="nav-menu">
+
+                @auth
+                    <a href="{{route('dashboard')}}">Dashboard</a>
+                @else
+                    <a href="{{route('login')}}">Login</a>
+                @endauth
+            </div>
             <h1 class="text-center">SUPER SOLAR PANELS</h1>
             @livewire('form')
 

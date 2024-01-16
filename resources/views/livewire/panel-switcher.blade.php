@@ -5,7 +5,7 @@
             {{ session('message') }}
         </div>
     @endif
-    <div class="panels d-flex flex-wrap">
+    <div class="panels flex flex-wrap">
         @foreach($subscription->panels as $panel)
             <div
                 wire:click="togglePanel({{$panel->id}})"
