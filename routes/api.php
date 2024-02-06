@@ -22,3 +22,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('subscriptions/{subscription}', function(Subscription $subscription) {
     return $subscription->with('panels')->get();
 });
+
+Route::get('subscriptions', function() {
+
+    $data = [];
+
+    foreach(Subscription::all() as $subscription) {
+        array_push($data, [
+            'customer_name' => $subscription->customer->name,
+            'customer_email' => $subscription->customer->email,
+            'customer_address' => $subscription->customer->address,
+            'customer_city' => $subscription->customer->city,
+            'solar_panel_system_name' => $subscription->solarPanelSystem->name,
+            'number_of_panels' => $subscription->panels->count(),
+        ]);
+    }
+    return $data;
+});

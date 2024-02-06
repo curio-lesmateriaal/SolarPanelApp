@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionsController;
 use App\Models\Panel;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +27,11 @@ Route::get('/dashboard', function () {
 
     // haal actieve panelen op
     $panelCount = Panel::whereNotNull('subscription_id')->count();
-
+    $subscriptionCount = Subscription::count();
     return view('dashboard', [
         'customerCount' => $customerCount,
-        'panelCount' => $panelCount
+        'panelCount' => $panelCount,
+        'subscriptionCount' => $subscriptionCount
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
