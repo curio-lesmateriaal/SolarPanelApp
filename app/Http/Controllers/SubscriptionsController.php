@@ -19,10 +19,8 @@ class SubscriptionsController extends Controller
     }
 
     public function create() {
-        $solarPanelSystems = \App\Models\SolarPanelSystem::all();
-        return view('subscriptions.create', [
-            'solarPanelSystems' => $solarPanelSystems,
-        ]);
+
+        return view('subscriptions.create');
     }
 
     public function store(Request $request) {
