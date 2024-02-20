@@ -8,15 +8,16 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+                <div class="p-6">
                     <ul>
                         @forelse($subscriptions as $subscription)
-                            <li>
+                            <li class="m-4 border-2 p-4 text-gray-900">
                                 <a href="{{route('subscriptions.show', $subscription->id)}}">
                                     {{$subscription->customer->name}} {{ $subscription->customer->address }} <br>
                                     type systeem: <b>{{ $subscription->solarPanelSystem->name }}</b> <br>
                                     aantal panelen: <b>{{ $subscription->panels->count() }}</b>
                                 </a>
+
                             </li>
                         @empty
                             <li><i>Momenteel geen subscriptions</i></li>

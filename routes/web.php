@@ -39,6 +39,12 @@ Route::middleware('auth')->group(function () {
     Route::get("/subscriptions", [SubscriptionsController::class, 'index'])
             ->name('subscriptions.index');
 
+    Route::post('/subscriptions', [SubscriptionsController::class, 'store'])
+            ->name('subscriptions.store');
+
+    Route::get("/subscriptions/create", [SubscriptionsController::class, 'create'])
+        ->name('subscriptions.create');
+
     Route::get('/subscriptions/{subscription}', [SubscriptionsController::class, 'show'])
             ->name('subscriptions.show');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
