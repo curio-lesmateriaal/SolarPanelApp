@@ -42,6 +42,13 @@
             </select>
         </div>
 
+        @if($panelCount > 1)
+            <div class="mb-4">
+                <label for="panelCount">Panel</label>
+                <input type="number" max="{{$panelCount}}" name="" id="">
+            </div>
+        @endif
+
         <button type="submit" class=" text-black border-2 px-4 py-3 rounded font-medium w-full">Create subscription</button>
     </form>
 </div>
