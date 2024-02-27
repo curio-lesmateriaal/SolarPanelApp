@@ -45,7 +45,7 @@
         @if($panelCount > 1)
             <div class="mb-4">
                 <label for="panelCount">Panel</label>
-                <input type="number" max="{{$panelCount}}" name="" id="">
+                <input class="w-full border-2 rounded-lg" type="number" max="{{$panelCount}}" name="panelCount" id="">
             </div>
         @endif
 
