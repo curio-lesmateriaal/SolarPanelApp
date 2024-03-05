@@ -18,6 +18,10 @@ class Subscription extends Model
         return $this->belongsTo(SolarPanelSystem::class);
     }
 
+    public function activePanels() {
+        return $this->panels()->where('status', 'active')->count();
+    }
+
     public function panels() {
         return $this->hasMany(Panel::class);
     }

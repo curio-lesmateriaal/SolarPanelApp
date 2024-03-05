@@ -30,12 +30,13 @@
         @error('phone') <p class="text-red-500">{{ $message }}</p> @enderror
         <div class="mb-4">
             <label for="phone">Phone</label>
-            <input type="text" name="phone" id="phone" class="w-full border-2 rounded-lg">
+            <input type="text" maxlength="14" name="phone" id="phone" class="w-full border-2 rounded-lg">
         </div>
         @error('solar_panel_system_id') <p class="text-red-500">{{ $message }}</p> @enderror
         <div class="mb-4">
             <label for="solar_panel_system_id">Solar panel system</label>
             <select wire:change="changeSystem(event.target.value)" name="solar_panel_system_id" id="solar_panel_system_id" class="w-full border-2 rounded-lg">
+                    <option disabled selected value="">Maak een keuze</option>
                 @foreach($solarPanelSystems as $solarPanelSystem)
                     <option value="{{$solarPanelSystem->id}}">{{$solarPanelSystem->name}}</option>
                 @endforeach
@@ -44,8 +45,10 @@
 
         @if($panelCount > 1)
             <div class="mb-4">
-                <label for="panelCount">Panel</label>
-                <input class="w-full border-2 rounded-lg" type="number" max="{{$panelCount}}" name="panelCount" id="">
+
+                <label for="panelCount">Panel {{$panelInput }}</label>
+                <input wire:model="panelInput" wire:keyup="checkMaxPanels" class="w-full border-2 rounded-lg" type="number" max="{{$panelCount}}" min="0" name="panelCount" id="">
+                <p class="text-red-500">{{$warning}}</p>
             </div>
         @endif
 

@@ -29,7 +29,7 @@ class SubscriptionsController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone' => 'required|max:14',
             'address' => 'required',
             'zip' => 'required',
             'city' => 'required',
@@ -53,7 +53,7 @@ class SubscriptionsController extends Controller
 
             $panels = Panel::where('solar_panel_system_id', $request->solar_panel_system_id)
                 ->whereNull('subscription_id')
-                ->limit($request->panel_count)
+                ->limit($request->panelCount)
                 ->update([
                     'subscription_id' => $subscription->id,
                 ]);
